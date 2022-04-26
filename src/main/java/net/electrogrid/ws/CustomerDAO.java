@@ -166,16 +166,17 @@ private static CustomerDAO instance;
 		
 		try {
 			connection = DatabaseUtils.getConnection();
-			preparedStatement = connection.prepareStatement("Update bill set customerId = ?, nic = ?, name = ?, address = ?, phone = ?, gender = ?, age = ?, email = ? ");
+			preparedStatement = connection.prepareStatement("Update customer set nic =?, name =?,address =?,phone=?, gender=?,age=?,email=? Where customerId =? ");
 			
-			preparedStatement.setInt(1, customer.getCustomerId());
-			preparedStatement.setString(2, customer.getNic());
-			preparedStatement.setString(3, customer.getName());
-			preparedStatement.setString(4, customer.getAddress());
-			preparedStatement.setString(5, customer.getPhone());
-			preparedStatement.setString(6, customer.getGender());
-			preparedStatement.setInt(7, customer.getAge());
-			preparedStatement.setString(8, customer.getEmail());
+			
+			preparedStatement.setString(1, customer.getNic());
+			preparedStatement.setString(2, customer.getName());
+			preparedStatement.setString(3, customer.getAddress());
+			preparedStatement.setString(4, customer.getPhone());
+			preparedStatement.setString(5, customer.getGender());
+			preparedStatement.setInt(6, customer.getAge());
+			preparedStatement.setString(7, customer.getEmail());
+			preparedStatement.setInt(8, customer.getCustomerId());
 			int affectedRows = preparedStatement.executeUpdate();
 			if(affectedRows==1) {
 				return true;
